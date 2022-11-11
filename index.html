@@ -14,23 +14,29 @@
   <div id="header">
     <h1>Library</h1>
   </div>
-  <form action="" method="post">
-    <label for="title">Title</label>
-    <input type="text" id="title" name="title" required>
+  <div id="modal">
+    <div id="title">
+      <h1>Add new book</h1>
+      <div id="close-btn">Close</div>
+    </div>
+    <form action="" method="post">
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" required>
 
-    <label for="author">Author</label>
-    <input type="text" id="author" name="author" required>
+      <label for="author">Author:</label>
+      <input type="text" id="author" name="author" required>
 
-    <label for="pages">Number of pages</label required>
-    <input type="number" id="pages" name="pages" min=1 required>
+      <label for="pages">Number of pages:</label required>
+      <input type="number" id="pages" name="pages" min=1 required>
 
-    <label for="read">Did you read it?</label>
-    <input type="checkbox" id="read" name="read">
+      <label for="read">Did you read it?</label>
+      <input type="checkbox" id="read" name="read">
 
-    <input type="submit">
-  </form>
-  <div id="books">
+      <input type="submit">
+    </form>
   </div>
+  <div id="books"></div>
+  <div id="add-btn">Add</div>
 </body>
 
 </html>
