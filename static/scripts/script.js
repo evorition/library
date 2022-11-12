@@ -17,6 +17,10 @@ function Book(title, author, pages, read) {
   this.read = read;
 }
 
+Book.prototype.changeReadStatus = function () {
+  this.read = !this.read;
+}
+
 function addBookToLibrary(e) {
   e.preventDefault();
 
@@ -39,16 +43,12 @@ function addBookToGrid(book) {
   const title = document.createElement("p");
   const author = document.createElement("p");
   const pages = document.createElement("p");
-  const read = document.createElement("p");
-  const deleteButton = document.createElement("button");
-
-  deleteButton.classList.add("delete-btn");
+  const read = addReadButton(book);
+  const deleteButton = addDeleteButton();
 
   title.textContent = `Title: ${book.title}`;
   author.textContent = `Author: ${book.author}`;
   pages.textContent = `Number of pages: ${book.pages}`;
-  read.textContent = book.read ? "Read it" : "Haven't read it yet";
-  deleteButton.textContent = "Delete";
 
   bookCard.appendChild(title);
   bookCard.appendChild(author);
@@ -58,7 +58,6 @@ function addBookToGrid(book) {
 
   booksGrid.appendChild(bookCard);
 
-  addDeleteButton(deleteButton);
   updateIndex();
 }
 
@@ -67,7 +66,32 @@ function closeForm() {
   form.reset();
 }
 
-function addDeleteButton(deleteButton) {
+function addReadButton(book) {
+  const readButton = document.createElement("button");
+  assignReadStatus(book, readButton);
+
+  readButton.addEventListener("click", () => {
+    book.changeReadStatus();
+    assignReadStatus(book, readButton);
+  })
+
+  return readButton;
+}
+
+function assignReadStatus(book, readButton) {
+  if (book.read) {
+    readButton.textContent = "Read";
+  } else {
+    readButton.textContent = "Didn't read yet";
+  }
+}
+
+function addDeleteButton() {
+  const deleteButton = document.createElement("button");
+
+  deleteButton.textContent = "delete";
+  deleteButton.classList.add("delete-btn");
+
   deleteButton.addEventListener("click", () => {
     const bookElement = deleteButton.parentElement;
     const bookIndex = bookElement.dataset.index;
@@ -77,6 +101,8 @@ function addDeleteButton(deleteButton) {
 
     updateIndex();
   });
+
+  return deleteButton;
 }
 
 function updateIndex() {
