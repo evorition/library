@@ -1,5 +1,6 @@
 const library = [];
 
+const mainBody = document.querySelector("#main");
 const modalForm = document.querySelector("#modal-form");
 const form = document.querySelector("form");
 const booksGrid = document.querySelector("#books");
@@ -7,7 +8,7 @@ const addButton = document.querySelector("#add-btn");
 const closeButton = document.querySelector("#close-btn");
 
 form.addEventListener("submit", addBookToLibrary);
-addButton.addEventListener("click", e => modalForm.style.display = "block");
+addButton.addEventListener("click", openForm);
 closeButton.addEventListener("click", closeForm);
 
 function Book(title, author, pages, read) {
@@ -61,13 +62,21 @@ function addBookToGrid(book) {
   updateIndex();
 }
 
+function openForm() {
+  modalForm.style.display = "block";
+  mainBody.style.filter = "blur(2px) grayscale(50%)";
+}
+
 function closeForm() {
   modalForm.style.display = "none";
+  mainBody.style.filter = null;
   form.reset();
 }
 
 function addReadButton(book) {
   const readButton = document.createElement("button");
+
+  readButton.classList.add("read-btn");
   assignReadStatus(book, readButton);
 
   readButton.addEventListener("click", () => {
@@ -81,8 +90,10 @@ function addReadButton(book) {
 function assignReadStatus(book, readButton) {
   if (book.read) {
     readButton.textContent = "Read";
+    readButton.classList.add("complete");
   } else {
     readButton.textContent = "Didn't read yet";
+    readButton.classList.remove("complete");
   }
 }
 
@@ -112,3 +123,6 @@ function updateIndex() {
     bookElements[i].dataset.index = i;
   }
 }
+
+const ulysses = new Book("Ulysses", "James Joyce", 732, false);
+addBookToGrid(ulysses);

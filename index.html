@@ -7,17 +7,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="./static/css/style.css" rel="stylesheet">
   <script src="./static/scripts/script.js" defer></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <title>Library</title>
 </head>
 
 <body>
-  <div id="header">
-    <h1>Library</h1>
-  </div>
   <div id="modal-form">
     <div id="modal-title">
       <h1>Add new book</h1>
-      <div id="close-btn">Close</div>
+      <div id="close-btn">
+        <span class="material-icons">
+          close
+        </span>
+      </div>
     </div>
     <form action="" method="post">
       <label for="title">Title:</label>
@@ -35,8 +37,17 @@
       <input type="submit">
     </form>
   </div>
-  <div id="books"></div>
-  <div id="add-btn">Add</div>
+  <div id="main">
+    <div id="header">
+      <h1>Library</h1>
+    </div>
+    <div id="books"></div>
+    <div id="add-btn">
+      <span class="material-icons">
+        add
+      </span>
+    </div>
+  </div>
 </body>
 
 </html>
