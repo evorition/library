@@ -11,15 +11,17 @@ form.addEventListener("submit", addBookToLibrary);
 addButton.addEventListener("click", openForm);
 closeButton.addEventListener("click", closeForm);
 
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-}
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
 
-Book.prototype.changeReadStatus = function () {
-  this.read = !this.read;
+  changeReadStatus() {
+    this.read = !this.read;
+  }
 }
 
 function addBookToLibrary(e) {
